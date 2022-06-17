@@ -16,4 +16,4 @@ img = qr.make_image(
     fill_color='black',
     back_color='white',
     )
-img.save('physmag_prices_qr.png')
+img.save('prices_qr.png')

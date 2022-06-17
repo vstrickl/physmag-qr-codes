@@ -16,4 +16,4 @@ img = qr.make_image(
     fill_color='black',
     back_color='white',
     )
-img.save('physmag_schedule_qr.png')
+img.save('schedule_qr.png')
