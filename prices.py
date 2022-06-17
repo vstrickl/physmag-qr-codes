@@ -9,7 +9,7 @@ qr = qrcode.QRCode(
     border=2
 )
 
-qr.add_data('./assets/PhysMag_TV_Price_Menu.pdf')
+qr.add_data('https://docs.physiquemagnifique.com/assets/PhysMag_TV_Price_Menu.pdf')
 qr.make(fit=True)
 
 img = qr.make_image(
