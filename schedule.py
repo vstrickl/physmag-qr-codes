@@ -9,7 +9,7 @@ qr = qrcode.QRCode(
     border=2
 )
 
-qr.add_data('https://docs.physiquemagnifique.com/assets/Physique_Magnifique_Schedule.pdf')
+qr.add_data('https://calendar.physiquemagnifique.com/')
 qr.make(fit=True)
 
 img = qr.make_image(
