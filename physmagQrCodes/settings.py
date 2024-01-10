@@ -160,15 +160,3 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#std-setting-LOGIN_URL
 
 LOGIN_URL = 'login'
-
-# Cloudinary Media Sorage
-# https://cloudinary.com/blog/managing-media-files-in-django
-
-import cloudinary
-import cloudinary.uploader
-import cloudinary.api
-cloudinary.config( 
-  	cloud_name = config('CLOUD_NAME'),
-  	api_key = config('API_KEY'),
-  	api_secret = config('API_SECRET')
-)
