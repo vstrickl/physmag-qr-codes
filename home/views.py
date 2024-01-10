@@ -13,7 +13,7 @@ from django.contrib import messages
 def home(request):
     header = "PhysMag QR Codes"
     sub_header = 'This app generates QR Codes for Physique Magnifique'
-    body = 'This is the body element of the page.'
+    body = 'Use the gear icon in the top right corner to access the admin panel and suggest new features.'
 
     context = {
         'header':header,
@@ -38,7 +38,7 @@ def login_user(request):
         if user is not None:
             login(request, user)
             # Redirect to a success page.
-            return redirect('dashboard')
+            return redirect('home')
         else:
             # Return an 'invalid login' error message.
             messages.success(request, 'There was an error logging in.')
