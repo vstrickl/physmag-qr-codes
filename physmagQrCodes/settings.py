@@ -26,7 +26,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG')
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['127.0.0.1', '.physiquemagnifique.com']
 
 
 # Application definition
@@ -160,3 +160,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#std-setting-LOGIN_URL
 
 LOGIN_URL = 'login'
+
+# CSRF Tokens
+# https://docs.djangoproject.com/en/4.2/howto/csrf/
+
+CSRF_TRUSTED_ORIGINS = ['https://qrcodes.physiquemagnifique.com','http://127.0.0.1:8000']
