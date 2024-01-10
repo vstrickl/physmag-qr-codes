@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'home',
+    'qrcodes',
 ]
 
 MIDDLEWARE = [
@@ -152,6 +154,12 @@ STORAGES = {
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# The URL or named URL pattern where requests are redirected for login when
+# using the login_required() decorator, LoginRequiredMixin, or AccessMixin.
+# https://docs.djangoproject.com/en/4.2/ref/settings/#std-setting-LOGIN_URL
+
+LOGIN_URL = 'login'
 
 # Cloudinary Media Sorage
 # https://cloudinary.com/blog/managing-media-files-in-django
