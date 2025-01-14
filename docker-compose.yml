@@ -18,11 +18,10 @@ services:
 
   web:
     build: .
+    image: web:latest
     ports:
       - "8000:8000"
     volumes:
-      - ./app:/src/app
-    command: gunicorn --bind 0.0.0.0:8000 summerPrograms.wsgi:application --chdir app  
     env_file:
       - ./.env
     depends_on:
