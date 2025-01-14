@@ -1,3 +1,4 @@
+"""This module renders UI view for app."""
 from django.shortcuts import render
 from django.shortcuts import redirect
 
@@ -11,9 +12,13 @@ from django.contrib import messages
 # Create your views here.
 @login_required
 def home(request):
+    """This function renders home page."""
     header = "PhysMag QR Codes"
     sub_header = 'This app generates QR Codes for Physique Magnifique'
-    body = 'Use the gear icon in the top right corner to access the admin panel and suggest new features.'
+    body ='''
+        `Use the gear icon in the top right corner
+        to access the admin panel and suggest new features.
+        '''
 
     context = {
         'header':header,
@@ -24,7 +29,7 @@ def home(request):
     return render(request, 'home.html', context)
 
 def login_user(request):
-
+    """This function handles user login."""
     welcome = "Welcome to Physique Magnifique's QR Code App"
 
     context = {
@@ -34,20 +39,19 @@ def login_user(request):
         username = request.POST['username']
         password = request.POST['password']
         user = authenticate(request, username=username, password=password)
-        
+
         if user is not None:
             login(request, user)
             # Redirect to a success page.
             return redirect('home')
-        else:
-            # Return an 'invalid login' error message.
-            messages.success(request, 'There was an error logging in.')
-            return redirect('login')
+        # Return an 'invalid login' error message.
+        messages.success(request, 'There was an error logging in.')
+        return redirect('login')
 
-    else:
-        return render(request, 'login-page.html', context)
+    return render(request, 'login-page.html', context)
 
 def logout_user(request):
+    """This function handles user logout."""
     logout(request)
     messages.success(request, 'You have successfully logged out.')
     return redirect("/")
