@@ -18,7 +18,7 @@ services:
 
   web:
     build: .
-    image: ${DOCKER_USERNAME}/${APP_NAME}:latest
+    image: ${APP_NAME}:latest
     ports:
       - "8000:8000"
     volumes:
