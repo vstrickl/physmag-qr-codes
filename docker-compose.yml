@@ -27,6 +27,7 @@ services:
       - ./.env
     environment:
       DJANGO_SETTINGS_MODULE: physmagQrCodes.settings
+      APP_NAME: ${APP_NAME}
     depends_on:
       - postgres
 

@@ -1,3 +1,4 @@
+cloudinary
 Django
 gunicorn
 Pillow

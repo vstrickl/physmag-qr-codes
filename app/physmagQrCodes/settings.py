@@ -174,3 +174,10 @@ LOGIN_URL = 'login'
 # https://docs.djangoproject.com/en/4.2/howto/csrf/
 
 CSRF_TRUSTED_ORIGINS = ['https://qrcodes.physiquemagnifique.com','http://127.0.0.1:8000']
+
+# Cloudinary
+CLOUDINARY = {
+    'cloud_name': config('CLOUD_NAME'),
+    'api_key': config('CLOUD_API_KEY'),
+    'api_secret': config('CLOUD_SECRET'),
+}

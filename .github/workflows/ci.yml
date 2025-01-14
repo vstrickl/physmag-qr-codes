@@ -47,12 +47,26 @@ jobs:
     - name: Build Docker Image
       run: docker build -t github_actions .
 
-    - name: Install Dependencies
+    - name: Create .env file
       run: |
-        pip install --no-cache-dir -r app/requirements.txt
+        echo "SECRET_KEY=${{ secrets.SECRET_KEY }}" >> .env
+        echo "APP_NAME=test" >> .env
+        echo "DEBUG=false" >> .env
+        echo "DBNAME=${{ secrets.DBNAME }}" >> .env
+        echo "DBUSER=${{ secrets.DBUSER }}" >> .env
+        echo "DBPWD=${{ secrets.DBPWD }}" >> .env
+        echo "DBHOST=${{ secrets.DBHOST }}" >> .env
+        echo "DBPORT=${{ secrets.DBPORT }}" >> .env
 
-    - name: Run Container Health Check
+    - name: Clone scripts repository
+      run: |
+        git clone https://github.com/vstrickl/bin.git ~/bin
+
+    - name: Deploy Docker Image
       env:
+        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        DOCKER_ACCESS_TOKEN: ${{ secrets.DOCKER_ACCESS_TOKEN }}
+        APP_NAME: ${{ secrets.APP_NAME }}
         SECRET_KEY: ${{ secrets.SECRET_KEY }}
         DEBUG: ${{ vars.DEBUG }}
         DBNAME: ${{ secrets.DBNAME }}
@@ -60,8 +74,8 @@ jobs:
         DBPWD: ${{ secrets.DBPWD }}
         DBHOST: ${{ secrets.DBHOST }}
         DBPORT: ${{ secrets.DBPORT }}
-      run: python3 app/home/scripts/health_check.py
-  
+      run: ~/bin/sdlc/verify_deploy
+
   deploy:
     name: Deploy Project to Docker
     runs-on: ubuntu-latest
@@ -77,6 +91,7 @@ jobs:
     - name: Create .env file
       run: |
         echo "SECRET_KEY=${{ secrets.SECRET_KEY }}" >> .env
+        echo "APP_NAME=${{ secrets.APP_NAME }}" >> .env
         echo "DEBUG=${{ vars.DEBUG }}" >> .env
         echo "DBNAME=${{ secrets.DBNAME }}" >> .env
         echo "DBUSER=${{ secrets.DBUSER }}" >> .env
@@ -93,7 +108,6 @@ jobs:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
         DOCKER_ACCESS_TOKEN: ${{ secrets.DOCKER_ACCESS_TOKEN }}
         APP_NAME: ${{ secrets.APP_NAME }}
-        DJANGO_ALLOWED_HOSTS: ${{ secrets.DJANGO_ALLOWED_HOSTS }}
         SECRET_KEY: ${{ secrets.SECRET_KEY }}
         DEBUG: ${{ vars.DEBUG }}
         DBNAME: ${{ secrets.DBNAME }}
