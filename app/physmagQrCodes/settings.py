@@ -11,7 +11,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 import os
 from pathlib import Path
-from decouple import config
+from decouple import config, UndefinedValueError
+from django.core.exceptions import ImproperlyConfigured
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -82,16 +83,19 @@ WSGI_APPLICATION = 'physmagQrCodes.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('PGDATABASE'),
-        'USER': config('PGUSER'),
-        'PASSWORD': config('PGPASSWORD'),
-        'HOST': config('PGHOST'),
-        'PORT': config('PGPORT'),
+try:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': config('DBNAME', default=''),
+            'USER': config('DBUSER', default=''),
+            'PASSWORD': config('DBPWD', default=''),
+            'HOST': config('DBHOST', default='localhost'),
+            'PORT': config('DBPORT', default='5432'),
+        }
     }
-}
+except UndefinedValueError as e:
+    raise ImproperlyConfigured(f"Missing database configuration: {e}") from e
 
 
 # Password validation

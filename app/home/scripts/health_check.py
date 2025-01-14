@@ -16,7 +16,7 @@ logger = logging.getLogger(__name__)
 # Setup Django environment
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.append(BASE_DIR)
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "physmagQRCodes.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "physmagQrCodes.settings")
 
 try:
     import django
