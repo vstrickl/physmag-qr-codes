@@ -18,13 +18,15 @@ services:
 
   web:
     build: .
-    image: web:latest
+    image: ${DOCKER_USERNAME}/${APP_NAME}:latest
     ports:
       - "8000:8000"
     volumes:
       - ./app:/src/app 
     env_file:
       - ./.env
+    environment:
+      DJANGO_SETTINGS_MODULE: physmagQrCodes.settings
     depends_on:
       - postgres
 
