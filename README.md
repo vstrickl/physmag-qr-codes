@@ -89,6 +89,7 @@ Run the test suite:
 To deploy the Dockerized Django backend:
 
 Build and push the image to GitHub. GitHub Actions will handle the deployment of the app to the Docker registry.
+
 Deploy the container on your preferred platform (e.g., AWS, GCP, Heroku, etc.).
 
 ## License
